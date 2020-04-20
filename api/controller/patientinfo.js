@@ -13,6 +13,7 @@ exports.getAll = (req, res, next) => {
         products: docs.map((doc) => {
           return {
             _id: doc._id,
+            time: doc.time,
             Name: doc.Name,
             Age: doc.Age,
             Gender: doc.Gender,
@@ -76,6 +77,7 @@ exports.getAll = (req, res, next) => {
 exports.post = (req, res, next) => {
   const patient = new PatientInfo({
     _id: new mongoose.Types.ObjectId(),
+    time: Date.now,
     Name: req.body.Name,
     Age: req.body.Age,
     Gender: req.body.Gender,
@@ -126,6 +128,7 @@ exports.post = (req, res, next) => {
         message: "Created patient successfully",
         createdPatient: {
           _id: result._id,
+          time: result.time,
           Name: result.Name,
           Age: result.Age,
           Gender: result.Gender,
