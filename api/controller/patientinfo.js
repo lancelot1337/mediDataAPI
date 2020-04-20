@@ -10,10 +10,11 @@ exports.getAll = (req, res, next) => {
     .then((docs) => {
       const response = {
         count: docs.length,
-        products: docs.map((doc) => {
+        patients: docs.map((doc) => {
           return {
             _id: doc._id,
-            time: doc.time,
+            createdAt: doc.createdAt,
+            updatedAt: doc.updatedAt,
             Name: doc.Name,
             Age: doc.Age,
             Gender: doc.Gender,
@@ -77,7 +78,6 @@ exports.getAll = (req, res, next) => {
 exports.post = (req, res, next) => {
   const patient = new PatientInfo({
     _id: new mongoose.Types.ObjectId(),
-    time: Date.now,
     Name: req.body.Name,
     Age: req.body.Age,
     Gender: req.body.Gender,
@@ -128,6 +128,8 @@ exports.post = (req, res, next) => {
         message: "Created patient successfully",
         createdPatient: {
           _id: result._id,
+          createdAt: result.createdAt,
+          updatedAt: result.updatedAt,
           time: result.time,
           Name: result.Name,
           Age: result.Age,
@@ -187,7 +189,7 @@ exports.getSingle = (req, res, next) => {
   const id = req.params.id;
   PatientInfo.findById(id)
     .select(
-      "Name Age Gender HR O2Sat Temp SBP MAP DBP Resp EtCO2 BaseExcess HCO3 FiO2 pH PaCO2 SaO2 AST BUN Alkalinephos Calcium Chloride Creatinine Bilirubin_direct Glucose LactateMagnesium Phosphate Potassium Bilirubin_total TroponinI Hct Hgb PTT WBC Fibrinogen Platelets HospAdmTime ICULOS ap1 ap2 ap3"
+      "createdAt updatedAt Name Age Gender HR O2Sat Temp SBP MAP DBP Resp EtCO2 BaseExcess HCO3 FiO2 pH PaCO2 SaO2 AST BUN Alkalinephos Calcium Chloride Creatinine Bilirubin_direct Glucose LactateMagnesium Phosphate Potassium Bilirubin_total TroponinI Hct Hgb PTT WBC Fibrinogen Platelets HospAdmTime ICULOS ap1 ap2 ap3"
     )
     .exec()
     .then((doc) => {

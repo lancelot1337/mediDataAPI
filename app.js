@@ -7,26 +7,26 @@ const mongoose = require("mongoose");
 const env = process.env.NODE_ENV || "development";
 const config = require("./config.js");
 //for mongoose
-const uri = `
-mongodb://lancelot:${config.development.dbpass}@ds051853.mlab.com:51853/meddataapi
-`;
-mongoose
-  .connect(uri, { useNewUrlParser: true })
-  .then((result) => {
-    console.log(`DB connected!`);
-  })
-  .catch((err) => {
-    console.log(`DB failed to connect, error: ${err}`);
-  });
+// const uri = `
+// mongodb://lancelot:${config.development.dbpass}@ds051853.mlab.com:51853/meddataapi
+// `;
+// mongoose
+//   .connect(uri, { useNewUrlParser: true })
+//   .then((result) => {
+//     console.log(`DB connected!`);
+//   })
+//   .catch((err) => {
+//     console.log(`DB failed to connect, error: ${err}`);
+//   });
 
-// mongoose.connect("mongodb://localhost/medDataAPI").then(
-//   () => {
-//     console.log("db connect");
-//   },
-//   (e) => {
-//     console.log("error:" + e);
-//   }
-// );
+mongoose.connect("mongodb://localhost/medDataAPI").then(
+  () => {
+    console.log("db connect");
+  },
+  (e) => {
+    console.log("error:" + e);
+  }
+);
 
 mongoose.Promise = global.Promise;
 
