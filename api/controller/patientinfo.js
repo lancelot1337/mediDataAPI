@@ -4,7 +4,7 @@ const PatientInfo = require("../models/patientinfo");
 exports.getAll = (req, res, next) => {
   PatientInfo.find()
     .select(
-      "Name Age Gender HR O2Sat Temp SBP MAP DBP Resp EtCO2 BaseExcess HCO3 FiO2 pH PaCO2 SaO2 AST BUN Alkalinephos Calcium Chloride Creatinine Bilirubin_direct Glucose LactateMagnesium Phosphate Potassium Bilirubin_total TroponinI Hct Hgb PTT WBC Fibrinogen Platelets HospAdmTime ICULOS ap1 ap2 ap3"
+      "createdAt updatedAt Name Age Gender HR O2Sat Temp SBP MAP DBP Resp EtCO2 BaseExcess HCO3 FiO2 pH PaCO2 SaO2 AST BUN Alkalinephos Calcium Chloride Creatinine Bilirubin_direct Glucose LactateMagnesium Phosphate Potassium Bilirubin_total TroponinI Hct Hgb PTT WBC Fibrinogen Platelets HospAdmTime ICULOS ap1 ap2 ap3"
     )
     .exec()
     .then((docs) => {
